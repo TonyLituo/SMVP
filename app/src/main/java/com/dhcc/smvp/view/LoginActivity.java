@@ -24,4 +24,9 @@ public class LoginActivity extends BaseNetActivity<ILoginView, LoginPresenter> i
     protected LoginPresenter createPresenter() {
         return new LoginPresenter(this);
     }
+
+    @Override
+    public void loginSuccess() {
+
+    }
 }

@@ -1,7 +1,7 @@
 package com.dhcc.smvp.model.base;
 
 
-import com.dhcc.smvp.model.bean.base.ResParams;
+import java.io.IOException;
 
 /**
  * Created by Lituo on 2017/4/10 0010. 20:09 .
@@ -9,11 +9,11 @@ import com.dhcc.smvp.model.bean.base.ResParams;
  * 网络访问Model监听
  */
 
-public interface INetListener<T extends ResParams> {
+public interface INetListener {
 
-    void onSucceed(T resParams);
+    void onSucceed(String body);
 
-    void onFailed();
+    void onFailed(IOException e);
 
     void onError(int responseCode);
 }

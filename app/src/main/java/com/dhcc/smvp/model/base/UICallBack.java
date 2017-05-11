@@ -2,11 +2,6 @@ package com.dhcc.smvp.model.base;
 
 import android.os.Handler;
 import android.os.Looper;
-import android.text.TextUtils;
-
-import com.dhcc.smvp.model.bean.base.ResParams;
-import com.dhcc.smvp.model.bean.base.ResponBean;
-import com.google.gson.Gson;
 
 import java.io.IOException;
 
@@ -21,10 +16,14 @@ import okhttp3.Response;
  */
 
 
-public abstract class UICallBack<T extends ResParams> implements Callback {
+public abstract class UICallBack implements Callback {
 
     //拿到主线程的handler
     private final Handler handler = new Handler(Looper.getMainLooper());
+
+//    //响应
+//    ResponBean<T> responBean;//{"rtnCode":"0000","rtnMsg":"交易成功","resParams":{}}
+
 
     @Override
     public void onFailure(final Call call, final IOException e) {
@@ -64,29 +63,24 @@ public abstract class UICallBack<T extends ResParams> implements Callback {
         if (stringBody.endsWith("\"")) {
             stringBody = stringBody.substring(0, stringBody.length() - 1);
         }
-
+        //关闭防止内存泄漏
+        if (response.body() != null) {
+            response.body().close();
+        }
 //        LogUtils.e("返回的Json报文：" + body);
+        final String body = stringBody;
 
-        final T t = getResParams(stringBody);
         handler.post(new Runnable() {
             @Override
             public void run() {
-                onResponseUI(call, t);
+                onResponseUI(call, body);
             }
         });
-
     }
 
-    private T getResParams(String body) {
-        if (TextUtils.isEmpty(body)) return null;
-        ResponBean<T> responBean = new Gson().fromJson(body, ResponBean.class);
-        return responBean.getResParams();
-
-    }
     //抽象三个方法（运行在主线程）
 
-
-    public abstract void onResponseUI(Call call, T resParams);
+    public abstract void onResponseUI(Call call, String body);
 
     public abstract void onFailureUI(Call call, IOException e);
 

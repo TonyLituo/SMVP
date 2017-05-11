@@ -2,7 +2,6 @@ package com.dhcc.smvp.model.net;
 
 import com.dhcc.smvp.model.base.IBaseModel;
 import com.dhcc.smvp.model.base.INetListener;
-import com.dhcc.smvp.model.bean.AddressBean;
 
 import java.util.Map;
 
@@ -12,5 +11,5 @@ import java.util.Map;
 
 public interface ILoginModel extends IBaseModel {
 
-    void login(Map<String, String> map, INetListener<AddressBean> listener);
+    void login(Map<String, String> map, INetListener listener);
 }

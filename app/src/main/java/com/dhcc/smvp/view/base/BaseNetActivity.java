@@ -33,13 +33,7 @@ public abstract class BaseNetActivity<V extends IBaseNetView, P extends IBasePre
     }
 
     @Override
-    public void error(int responseCode) {
-        Log.e(tag, "错误码 responseCode==" + responseCode);
+    public void showMessage(String message) {
+        Log.e(tag, message);
     }
-
-    @Override
-    public void failure() {
-        Log.e(tag, "网络连接失败，请检查网络连接...");
-    }
-
 }

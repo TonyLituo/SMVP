@@ -8,4 +8,6 @@ import com.dhcc.smvp.view.base.IBaseNetView;
 
 public interface ILoginView extends IBaseNetView{
 
+    void loginSuccess();
+
 }

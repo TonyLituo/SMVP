@@ -15,15 +15,11 @@ public interface IBaseNetView extends IBaseView {
      */
     void hideProgressBar();
 
-    /**
-     * 网络错误
-     *
-     * @param responseCode 错误码
-     */
-    void onError(int responseCode);
 
     /**
-     * 无网络
+     * 显示错误信息
+     *
+     * @param message
      */
-    void onFailed();
+    void showMessage(String message);
 }
