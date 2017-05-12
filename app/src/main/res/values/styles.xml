@@ -1,11 +1,73 @@
 <resources>
 
+    <!--  示例
+        <style name="AppTheme.NoActionBar">
+            &lt;!&ndash;状态栏颜色&ndash;&gt;
+            <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+            &lt;!&ndash;控制各个控件被选中时的颜色&ndash;&gt;
+            <item name="colorAccent">@color/colorAccent</item>
+            &lt;!&ndash;页面背景色&ndash;&gt;
+            <item name="android:windowBackground">@color/windowBackg</item>
+            &lt;!&ndash;底部导航栏颜色&ndash;&gt;
+            <item name="android:navigationBarColor">@color/navigationColor</item>
+            &lt;!&ndash;Appbar背景色&ndash;&gt;
+            <item name="android:colorPrimary">@color/colorPrimary</item>
+            &lt;!&ndash;ToolBar上的Title颜色&ndash;&gt;
+            <item name="android:textColorPrimary">@color/textColorPrimary</item>
+            &lt;!&ndash;各个控制控件的默认颜色&ndash;&gt;
+            <item name="android:colorControlNormal">@color/colorControlNormal</item>
+        </style>-->
+
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+    <!-- Customize your theme here. -->
+    <item name="colorPrimary">@color/colorPrimary</item>
+    <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+    <item name="colorAccent">@color/colorAccent</item>
+</style>
+
+    <!--系统主题色-->
+    <!--夜间模式-->
+    <style name="DarkTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/darkApp</item>
+        <item name="colorPrimaryDark">@color/darkApp</item>
+        <item name="colorAccent">@color/darkApp</item>
+    </style>
+    <!--少女粉-->
+    <style name="PinkTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/pinkApp</item>
+        <item name="colorPrimaryDark">@color/pinkApp</item>
+        <item name="colorAccent">@color/pinkApp</item>
+    </style>
+    <!--姨妈红-->
+    <style name="RedTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/redApp</item>
+        <item name="colorPrimaryDark">@color/redApp</item>
+        <item name="colorAccent">@color/redApp</item>
+    </style>
+    <!--咸蛋黄-->
+    <style name="YellowTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/yellowApp</item>
+        <item name="colorPrimaryDark">@color/yellowApp</item>
+        <item name="colorAccent">@color/yellowApp</item>
+    </style>
+    <!--草苗绿-->
+    <style name="GreenTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/greenApp</item>
+        <item name="colorPrimaryDark">@color/greenApp</item>
+        <item name="colorAccent">@color/greenApp</item>
+    </style>
+    <!--胖次蓝-->
+    <style name="BlueTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/blueApp</item>
+        <item name="colorPrimaryDark">@color/blueApp</item>
+        <item name="colorAccent">@color/blueApp</item>
+    </style>
+    <!--基佬紫-->
+    <style name="PopTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/popApp</item>
+        <item name="colorPrimaryDark">@color/popApp</item>
+        <item name="colorAccent">@color/popApp</item>
     </style>
 
 </resources>

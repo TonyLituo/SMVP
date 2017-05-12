@@ -1,5 +1,6 @@
 package com.dhcc.smvp.view;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -14,7 +15,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class MainActivity extends AppCompatActivity implements BottomWindow.OnClickListener {
@@ -25,9 +25,10 @@ public class MainActivity extends AppCompatActivity implements BottomWindow.OnCl
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+        setTheme(R.style.RedTheme);
         setContentView(R.layout.activity_main);
-        ButterKnife.bind(this);
+
+        super.onCreate(savedInstanceState);
         mList = new ArrayList<>();
         mList.add(new BottomWindow.CardBean("交通银行储蓄卡", "6123345611113421567", "path", true));
         mList.add(new BottomWindow.CardBean("建设银行储蓄卡", "6123345611113421123", "path", false));
@@ -42,7 +43,7 @@ public class MainActivity extends AppCompatActivity implements BottomWindow.OnCl
         mTextView.setText(bean.getBankName() + "(" + accoutNo + ")");
     }
 
-    @OnClick({R.id.tv_test})
+    @OnClick({R.id.tv_test, R.id.button})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.tv_test:
@@ -56,6 +57,10 @@ public class MainActivity extends AppCompatActivity implements BottomWindow.OnCl
                     return;
                 }
                 mBottomWindow.show();//显示来源选择框
+                break;
+            case R.id.button:
+                Intent intent = new Intent(this, ThemeActivity.class);
+                startActivity(intent);
                 break;
             default:
                 break;
