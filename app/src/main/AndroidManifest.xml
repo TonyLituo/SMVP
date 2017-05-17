@@ -20,12 +20,6 @@
         </activity>
         <activity android:name=".view.LoginActivity">
         </activity>
-        <activity android:name=".view.ThemeActivity">
-        </activity>
-        <activity android:name=".view.TestActivity">
-        </activity>
-        <activity android:name=".view.SecActivity">
-        </activity>
     </application>
 
 </manifest>

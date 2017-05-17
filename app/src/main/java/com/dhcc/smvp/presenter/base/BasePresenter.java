@@ -11,7 +11,6 @@ public abstract class BasePresenter<V extends IBaseView> implements IBasePresent
 
     protected V view;
 
-
     public BasePresenter(V view) {
         this.view = view;
     }
