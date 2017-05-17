@@ -23,4 +23,7 @@
     <color name="blueApp">#2197f2</color>
     <!--基佬紫-->
     <color name="popApp">#9c29ae</color>
+
+    <!--白色-->
+    <color name="whiteApp">#ffffff</color>
 </resources>

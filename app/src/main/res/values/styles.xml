@@ -21,13 +21,9 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
-        <!-- <item name="colorPrimary">@color/colorPrimary</item>
-         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-         <item name="colorAccent">@color/colorAccent</item>-->
 
-
-        <!--fitsSystemWindows这个属性，主要是通过调整当前设置
-               这个属性的view的padding（paddingTop）去为我们的status_bar留下空间。-->
+        <!--fitsSystemWindows这个属性，主要是通过调整
+        当前设置这个属性的view的padding（paddingTop）去为我们的status_bar留下空间。-->
          <!--<item name="android:fitsSystemWindows">true</item>-->
 
         <!--页面可以拉伸到顶部状态栏，并且定义顶部状态栏透明-->
