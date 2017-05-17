@@ -20,51 +20,61 @@
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
-    <!-- Customize your theme here. -->
-    <item name="colorPrimary">@color/colorPrimary</item>
-    <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-    <item name="colorAccent">@color/colorAccent</item>
-</style>
+        <!-- Customize your theme here. -->
+        <!-- <item name="colorPrimary">@color/colorPrimary</item>
+         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+         <item name="colorAccent">@color/colorAccent</item>-->
+
+
+        <!--fitsSystemWindows这个属性，主要是通过调整当前设置
+               这个属性的view的padding（paddingTop）去为我们的status_bar留下空间。-->
+         <!--<item name="android:fitsSystemWindows">true</item>-->
+
+        <!--页面可以拉伸到顶部状态栏，并且定义顶部状态栏透明-->
+        <item name="android:windowTranslucentStatus">true</item>
+
+
+    </style>
 
     <!--系统主题色-->
     <!--夜间模式-->
-    <style name="DarkTheme" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="DarkTheme" parent="AppTheme">
         <item name="colorPrimary">@color/darkApp</item>
         <item name="colorPrimaryDark">@color/darkApp</item>
         <item name="colorAccent">@color/darkApp</item>
     </style>
     <!--少女粉-->
-    <style name="PinkTheme" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="PinkTheme" parent="AppTheme">
         <item name="colorPrimary">@color/pinkApp</item>
         <item name="colorPrimaryDark">@color/pinkApp</item>
         <item name="colorAccent">@color/pinkApp</item>
     </style>
     <!--姨妈红-->
-    <style name="RedTheme" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="RedTheme" parent="AppTheme">
         <item name="colorPrimary">@color/redApp</item>
         <item name="colorPrimaryDark">@color/redApp</item>
         <item name="colorAccent">@color/redApp</item>
     </style>
     <!--咸蛋黄-->
-    <style name="YellowTheme" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="YellowTheme" parent="AppTheme">
         <item name="colorPrimary">@color/yellowApp</item>
         <item name="colorPrimaryDark">@color/yellowApp</item>
         <item name="colorAccent">@color/yellowApp</item>
     </style>
     <!--草苗绿-->
-    <style name="GreenTheme" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="GreenTheme" parent="AppTheme">
         <item name="colorPrimary">@color/greenApp</item>
         <item name="colorPrimaryDark">@color/greenApp</item>
         <item name="colorAccent">@color/greenApp</item>
     </style>
     <!--胖次蓝-->
-    <style name="BlueTheme" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="BlueTheme" parent="AppTheme">
         <item name="colorPrimary">@color/blueApp</item>
         <item name="colorPrimaryDark">@color/blueApp</item>
         <item name="colorAccent">@color/blueApp</item>
     </style>
     <!--基佬紫-->
-    <style name="PopTheme" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="PopTheme" parent="AppTheme">
         <item name="colorPrimary">@color/popApp</item>
         <item name="colorPrimaryDark">@color/popApp</item>
         <item name="colorAccent">@color/popApp</item>

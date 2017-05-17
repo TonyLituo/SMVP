@@ -1,10 +1,14 @@
 package com.dhcc.smvp.view.base;
 
 
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.Window;
 
 import com.dhcc.smvp.presenter.base.IBasePresenter;
 
@@ -26,6 +30,14 @@ public abstract class BaseActivity<V extends IBaseView, P extends IBasePresenter
         tag = this.getClass().getSimpleName();
 
         setContentView(getLayoutResID());
+
+        //把设置布局文件的操作交给继承的子类
+        ViewGroup contentFrameLayout = (ViewGroup) findViewById(Window.ID_ANDROID_CONTENT);
+        View parentView = contentFrameLayout.getChildAt(0);
+        if (parentView != null && Build.VERSION.SDK_INT >= 14) {
+            parentView.setFitsSystemWindows(true);
+        }
+
         initView();
 
         presenter = createPresenter();

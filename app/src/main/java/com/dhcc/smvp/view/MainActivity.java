@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity implements BottomWindow.OnCl
         mTextView.setText(bean.getBankName() + "(" + accoutNo + ")");
     }
 
-    @OnClick({R.id.tv_test, R.id.button})
+    @OnClick({R.id.tv_test, R.id.button,R.id.btn_sec})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.tv_test:
@@ -61,6 +61,10 @@ public class MainActivity extends AppCompatActivity implements BottomWindow.OnCl
             case R.id.button:
                 Intent intent = new Intent(this, ThemeActivity.class);
                 startActivity(intent);
+                break;
+            case R.id.btn_sec:
+                Intent intent1 = new Intent(this, TestActivity.class);
+                startActivity(intent1);
                 break;
             default:
                 break;

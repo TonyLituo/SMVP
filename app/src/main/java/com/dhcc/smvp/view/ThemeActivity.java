@@ -2,6 +2,7 @@ package com.dhcc.smvp.view;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -9,6 +10,7 @@ import android.widget.ListView;
 
 import com.dhcc.smvp.R;
 import com.dhcc.smvp.view.adapter.ThemeCardAdapter;
+import com.stylingandroid.prism.Prism;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,12 +21,17 @@ import butterknife.OnItemClick;
 public class ThemeActivity extends AppCompatActivity {
     @BindView(R.id.lst_theme)
     ListView mListView;
-
+    @BindView(R.id.base_toobar)
+    Toolbar mToolbar;
     List<ThemeCardAdapter.CardBean> mList;
 
     private int themeApp = -1;
 
+    private int currentColour = -1;
+
     private ThemeCardAdapter mAdapter;
+
+    private Prism prism;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,14 +52,18 @@ public class ThemeActivity extends AppCompatActivity {
         mList.add(new ThemeCardAdapter.CardBean("基佬紫", R.color.popApp, R.style.PopTheme, false));
         mAdapter = new ThemeCardAdapter(mList);
         mListView.setAdapter(mAdapter);
-
+        prism = Prism.Builder.newInstance()
+                .background(getWindow())
+                .background(mToolbar)
+                .build();
     }
 
     @OnItemClick({R.id.lst_theme})
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         ThemeCardAdapter.CardBean bean = mList.get(position);
-        themeApp = bean.getThemeApp();
-
+        //themeApp = bean.getThemeApp();
+        currentColour = getResources().getColor(bean.getColorCard());
+        prism.setColor(currentColour);
         Log.e("Position", "==" + position);
         for (int i = 0; i < mList.size(); i++) {
             if (position == i) {

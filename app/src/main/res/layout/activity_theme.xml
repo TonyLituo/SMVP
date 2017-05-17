@@ -9,7 +9,8 @@
     tools:context="com.dhcc.smvp.view.ThemeActivity">
 
     <include
-        layout="@layout/base_toolbar"/>
+        layout="@layout/base_toolbar_state"
+        />
 
     <ListView
         android:id="@+id/lst_theme"
