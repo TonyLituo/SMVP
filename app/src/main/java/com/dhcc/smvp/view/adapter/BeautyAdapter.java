@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.dhcc.smvp.R;
+import com.dhcc.smvp.common.widgetutil.OnItemClickListener;
 
 import java.util.List;
 
@@ -22,10 +23,16 @@ import butterknife.ButterKnife;
 
 public class BeautyAdapter extends RecyclerView.Adapter<BeautyAdapter.MyViewHolder> {
 
-    List<Integer> mList;
+    private List<Integer> mList;
+
+    private OnItemClickListener mOnItemClickListener;
 
     public BeautyAdapter(List<Integer> list) {
         mList = list;
+    }
+
+    public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
+        this.mOnItemClickListener = onItemClickListener;
     }
 
     @Override
@@ -36,8 +43,16 @@ public class BeautyAdapter extends RecyclerView.Adapter<BeautyAdapter.MyViewHold
     }
 
     @Override
-    public void onBindViewHolder(MyViewHolder holder, int position) {
+    public void onBindViewHolder(MyViewHolder holder, final int position) {
         holder.mImageView.setImageResource(mList.get(position));
+        if (null != mOnItemClickListener) {
+            holder.mCardView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    mOnItemClickListener.onItemClick(v, position);
+                }
+            });
+        }
     }
 
     @Override

@@ -11,17 +11,34 @@
     <android.support.design.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:fitsSystemWindows="true">
+        >
 
-        <include layout="@layout/app_bar"/>
+        <include
+            layout="@layout/app_bar_main"
+          />
 
         <!--NestedScrollView，作用类似与ScrollView，但是这里放置ScrollView是没有效果的-->
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/rcv_beauty"
+        <!--选项卡-->
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+            android:orientation="vertical"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
+
+            <android.support.v4.view.ViewPager
+                android:id="@+id/view_pager"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <!--<android.support.v7.widget.RecyclerView-->
+            <!--android:id="@+id/rcv_beauty"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--/>-->
+
+
+        </LinearLayout>
 
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/float_btn"
@@ -29,12 +46,14 @@
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|right"
             android:layout_margin="10dp"
-            android:src="@mipmap/ic_launcher"
+            android:src="@mipmap/visa_policy"
             app:fabSize="normal"/>
     </android.support.design.widget.CoordinatorLayout>
 
     <!--侧滑菜单-->
 
-    <include layout="@layout/menu_left"/>
+    <include
+        layout="@layout/menu_left"
+       />
 
 </android.support.v4.widget.DrawerLayout>

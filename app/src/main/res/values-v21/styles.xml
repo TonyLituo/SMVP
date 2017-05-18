@@ -1,35 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <!--  示例
-        <style name="AppTheme.NoActionBar">
-            &lt;!&ndash;状态栏颜色&ndash;&gt;
-            <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-            &lt;!&ndash;控制各个控件被选中时的颜色&ndash;&gt;
-            <item name="colorAccent">@color/colorAccent</item>
-            &lt;!&ndash;页面背景色&ndash;&gt;
-            <item name="android:windowBackground">@color/windowBackg</item>
-            &lt;!&ndash;底部导航栏颜色&ndash;&gt;
-            <item name="android:navigationBarColor">@color/navigationColor</item>
-            &lt;!&ndash;Appbar背景色&ndash;&gt;
-            <item name="android:colorPrimary">@color/colorPrimary</item>
-            &lt;!&ndash;ToolBar上的Title颜色&ndash;&gt;
-            <item name="android:textColorPrimary">@color/textColorPrimary</item>
-            &lt;!&ndash;各个控制控件的默认颜色&ndash;&gt;
-            <item name="android:colorControlNormal">@color/colorControlNormal</item>
-        </style>-->
-
-    <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <!--fitsSystemWindows这个属性，主要是通过调整
         当前设置这个属性的view的padding（paddingTop）去为我们的status_bar留下空间。-->
-         <!--<item name="android:fitsSystemWindows">true</item>-->
+        <!--<item name="android:fitsSystemWindows">true</item>-->
         <!--页面可以拉伸到顶部状态栏，并且定义顶部状态栏透明-->
         <item name="android:windowTranslucentStatus">true</item>
-
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
 
     </style>
-
     <!--系统主题色-->
     <!--夜间模式-->
     <style name="DarkTheme" parent="AppTheme">

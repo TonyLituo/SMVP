@@ -4,6 +4,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/app_bar"
+    android:clickable="true"
     android:layout_width="match_parent"
     android:layout_height="256dp">
 
@@ -16,6 +17,7 @@
         app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
         <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar_app"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:minHeight="20dp"
@@ -36,17 +38,16 @@
 
 
     <!--选项卡-->
-    <android.support.design.widget.TabLayout
-        android:id="@+id/tabLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:scrollbarSize="10dp"
-        app:tabIndicatorColor="@android:color/holo_orange_dark"
-        app:tabMode="scrollable"
-        app:tabSelectedTextColor="#000000"
-        app:tabTextColor="#ffffff">
-
-    </android.support.design.widget.TabLayout>
+    <!--<android.support.design.widget.TabLayout-->
+    <!--android:id="@+id/tab_layout"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:scrollbarSize="10dp"-->
+    <!--app:tabIndicatorColor="@android:color/holo_orange_dark"-->
+    <!--app:tabMode="scrollable"-->
+    <!--app:tabSelectedTextColor="#000000"-->
+    <!--app:tabTextColor="#ffffff">-->
+    <!--</android.support.design.widget.TabLayout>-->
 
 
 </android.support.design.widget.AppBarLayout>

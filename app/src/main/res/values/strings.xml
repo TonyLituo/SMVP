@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">SMVP</string>
+
+    <string name="tv_visa_policy">签证政策</string>
+    <string name="tv_consulate_info">领馆信息</string>
+    <string name="tv_visa_prediction">出签预测</string>
+    <string name="tv_out_of_the_kit">出境锦囊</string>
 </resources>
