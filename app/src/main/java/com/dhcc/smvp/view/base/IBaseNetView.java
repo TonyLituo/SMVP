@@ -22,4 +22,6 @@ public interface IBaseNetView extends IBaseView {
      * @param message
      */
     void showMessage(String message);
+
+    void showErrorView();
 }

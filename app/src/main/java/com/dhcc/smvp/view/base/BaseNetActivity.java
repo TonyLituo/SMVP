@@ -36,4 +36,9 @@ public abstract class BaseNetActivity<V extends IBaseNetView, P extends IBasePre
     public void showMessage(String message) {
         Log.e(tag, message);
     }
+
+    @Override
+    public void showErrorView() {
+        super.showErrorView();
+    }
 }

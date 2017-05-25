@@ -25,7 +25,7 @@
         当前设置这个属性的view的padding（paddingTop）去为我们的status_bar留下空间。-->
         <!--<item name="android:fitsSystemWindows">true</item>-->
         <!--页面可以拉伸到顶部状态栏，并且定义顶部状态栏透明-->
-        <item name="android:windowTranslucentStatus">true</item>
+        <!--<item name="android:windowTranslucentStatus">true</item>-->
 
 
     </style>
@@ -74,8 +74,10 @@
         <item name="colorAccent">@color/popApp</item>
     </style>
 
-    <style name="PinkTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
 
-    <style name="PinkTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
+    <!--BUtton按钮样式-->
+    <style name="botton" parent="Base.Widget.AppCompat.Button">
+
+    </style>
 
 </resources>
