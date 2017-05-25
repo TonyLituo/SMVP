@@ -70,7 +70,6 @@ public class BeautyAdapter extends RecyclerView.Adapter<BeautyAdapter.MyViewHold
             super(itemView);
             ButterKnife.bind(this, itemView);
         }
-
     }
 
 }

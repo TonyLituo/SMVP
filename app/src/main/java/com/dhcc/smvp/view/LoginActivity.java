@@ -22,7 +22,7 @@ public class LoginActivity extends BaseNetActivity<ILoginView, LoginPresenter> i
     @NonNull
     @Override
     protected LoginPresenter createPresenter() {
-        return new LoginPresenter(this);
+        return new LoginPresenter();
     }
 
     @Override

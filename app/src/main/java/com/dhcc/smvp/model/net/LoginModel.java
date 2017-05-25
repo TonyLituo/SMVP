@@ -1,8 +1,8 @@
 package com.dhcc.smvp.model.net;
 
-import com.dhcc.smvp.common.OkHttpUtils;
+import com.dhcc.smvp.common.api.OkHttpUtils;
 import com.dhcc.smvp.model.base.INetListener;
-import com.dhcc.smvp.model.base.UICallBack;
+import com.dhcc.smvp.common.api.UICallBack;
 
 import org.json.JSONObject;
 

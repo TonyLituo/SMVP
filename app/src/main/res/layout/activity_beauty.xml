@@ -7,9 +7,8 @@
     android:layout_height="match_parent"
     tools:context="com.dhcc.smvp.view.BeautyActivity">
 
-    <ImageView
-        android:id="@+id/img_beauty"
+    <android.support.v4.view.ViewPager
+        android:id="@+id/vpg_beauty"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:scaleType="fitXY"/>
+        android:layout_height="match_parent"/>
 </RelativeLayout>

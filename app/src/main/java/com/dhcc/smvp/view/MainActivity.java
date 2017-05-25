@@ -2,32 +2,47 @@ package com.dhcc.smvp.view;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.dhcc.smvp.HomeActivity;
 import com.dhcc.smvp.R;
+import com.dhcc.smvp.model.TestModel;
+import com.dhcc.smvp.model.bean.Info;
 import com.dhcc.smvp.view.adapter.LeftAdapter;
 import com.dhcc.smvp.view.adapter.MenubBean;
-import com.dhcc.smvp.view.test.FirstFragment;
+import com.dhcc.smvp.view.test.LiveFragment;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import butterknife.OnItemClick;
+import io.reactivex.Observer;
+import io.reactivex.disposables.Disposable;
 
 public class MainActivity extends AppCompatActivity {
+
+    @BindView(R.id.activity_main)
+    DrawerLayout mDrawerLayout;
+
     @BindView(R.id.toolbar_app)
     Toolbar mToolbar;
     @BindView(R.id.tab_layout)
@@ -36,14 +51,25 @@ public class MainActivity extends AppCompatActivity {
     ViewPager mViewPager;
     @BindView(R.id.lst_menu)
     ListView mListView;
-    //    @BindView(R.id.rcv_beauty)
-//    RecyclerView mRecyclerView;
+
+    @BindView(R.id.img_bar_left)
+    ImageView mImgBarLeft;
+    @BindView(R.id.float_btn)
+    FloatingActionButton mFloatBtn;
+
+    @BindView(R.id.menu_left)
+    LinearLayout mMenuLeft;
     List<MenubBean> mList;
 
-
-    List<Integer> images;
+    //推荐 图片集
+    ArrayList<Integer> imagesList;
+    //banner图集
+    ArrayList<Integer> bannerList;
 
     private FragmentAdapter fmAapter;
+
+
+    private Handler mHandler = new Handler();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +77,33 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
         init();
+
+        TestModel testModel = new TestModel();
+        testModel.getArea(new Observer<Info>() {
+            @Override
+            public void onSubscribe(Disposable d) {
+                String thread = Thread.currentThread().getName();
+                Log.e("onSubscribe", thread + "========" );
+            }
+
+            @Override
+            public void onNext(Info info) {
+                String thread = Thread.currentThread().getName();
+                Log.e("onNext", thread + "========" );
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                String thread = Thread.currentThread().getName();
+                Log.e("onError", thread + "========"+e.getMessage()+"=="+e.getLocalizedMessage() );
+            }
+
+            @Override
+            public void onComplete() {
+                String thread = Thread.currentThread().getName();
+                Log.e("onComplete", thread + "========" );
+            }
+        });
     }
 
     private void init() {
@@ -70,75 +123,104 @@ public class MainActivity extends AppCompatActivity {
 
         mListView.setAdapter(new LeftAdapter(mList));
 
-        images = new ArrayList<>();
-        images.add(R.mipmap.beauty1);
-        images.add(R.mipmap.beauty2);
-        images.add(R.mipmap.beauty3);
-        images.add(R.mipmap.beauty4);
+        imagesList = new ArrayList<>();
+        imagesList.add(R.mipmap.beauty5);
+        imagesList.add(R.mipmap.beauty6);
+        imagesList.add(R.mipmap.beauty1);
+        imagesList.add(R.mipmap.beauty2);
+        imagesList.add(R.mipmap.beauty3);
+        imagesList.add(R.mipmap.beauty4);
 
-//        mRecyclerView.setLayoutManager(new GridLayoutManager(this, 2));
-//        int spanCount = 2; // 3 columns
-//        int spacing = 20; // 20px
-//        boolean includeEdge = true;
-//        mRecyclerView.addItemDecoration(new GridSpacingItemDecoration(spanCount, spacing, includeEdge));
-//        BeautyAdapter adapter = new BeautyAdapter(images);
-//        adapter.setOnItemClickListener(new OnItemClickListener() {
-//            @Override
-//            public void onItemClick(View view, int position) {
-//                Toast.makeText(MainActivity.this, "这是第" + position + "个小姐姐", Toast.LENGTH_SHORT).show();
-//                showBeauty(images.get(position));
-//            }
-//        });
-//        mRecyclerView.setAdapter(adapter);
+
+        bannerList = new ArrayList<>();
+        bannerList.add(R.mipmap.qiong);
+        bannerList.add(R.mipmap.banner1);
+        bannerList.add(R.mipmap.qiong);
+        bannerList.add(R.mipmap.banner1);
 
 //        mToolbar.setTitle("title");
 //        setSupportActionBar(mToolbar);
-        List<Fragment> fmList = new ArrayList<Fragment>();
-        ArrayList<String> nameList = new ArrayList<>();
-        for (int i = 0; i < 10; i++) {
-            nameList.add("Android" + i);
-        }
-        FirstFragment firstFragment = FirstFragment.newInstance(nameList);
-        FirstFragment firstFragment1 = FirstFragment.newInstance(nameList);
-        FirstFragment firstFragment2 = FirstFragment.newInstance(nameList);
-        fmList.add(firstFragment);
-        fmList.add(firstFragment1);
-        fmList.add(firstFragment2);
+        List<Fragment> fmList = new ArrayList();
+
+        LiveFragment fragment = LiveFragment.newInstance(bannerList, imagesList);
+        LiveFragment fragment1 = LiveFragment.newInstance(bannerList, imagesList);
+        LiveFragment fragment2 = LiveFragment.newInstance(bannerList, imagesList);
+        LiveFragment fragment3 = LiveFragment.newInstance(bannerList, imagesList);
+        LiveFragment fragment4 = LiveFragment.newInstance(bannerList, imagesList);
+        LiveFragment fragment5 = LiveFragment.newInstance(bannerList, imagesList);
+
+        fmList.add(fragment);
+        fmList.add(fragment1);
+        fmList.add(fragment2);
+        fmList.add(fragment3);
+        fmList.add(fragment4);
+        fmList.add(fragment5);
+
         fmAapter = new FragmentAdapter(getSupportFragmentManager(), fmList);
         mViewPager.setAdapter(fmAapter);
         mTabLayout.setupWithViewPager(mViewPager);
-        mTabLayout.getTabAt(0).setText("View0");
-        mTabLayout.getTabAt(1).setText("View1");
-        mTabLayout.getTabAt(2).setText("View2");
+        mTabLayout.getTabAt(0).setText("直播");
+        mTabLayout.getTabAt(1).setText("推荐");
+        mTabLayout.getTabAt(2).setText("追番");
+        mTabLayout.getTabAt(3).setText("分区");
+        mTabLayout.getTabAt(4).setText("动态");
+        mTabLayout.getTabAt(5).setText("发现");
     }
 
 
     @OnItemClick({R.id.lst_menu})
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         Toast.makeText(this, "Position==" + position, Toast.LENGTH_SHORT).show();
-
+        mDrawerLayout.closeDrawers();
         switch (position) {
             case 0:
-                toActivity(HomeActivity.class);
+                toActivity(MainActivity.class);
                 break;
             case 1:
+                break;
+            case 11:
+                toActivity(HomeActivity.class);
                 break;
             default:
                 break;
         }
+
     }
 
+    /**
+     * 导航跳转
+     *
+     * @param cla
+     */
     private void toActivity(Class<?> cla) {
-        Intent intent = new Intent(this, cla);
-        startActivity(intent);
+        final Intent intent = new Intent(this, cla);
+        mHandler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                startActivity(intent);
+            }
+        }, 300);
+
     }
 
-
-    private void showBeauty(int imageRes) {
-        Intent intent = new Intent(this, BeautyActivity.class);
-        intent.putExtra("imageRes", imageRes);
-        startActivity(intent);
+    @OnClick({R.id.img_bar_left, R.id.float_btn})
+    public void Clicked(View view) {
+        switch (view.getId()) {
+            case R.id.img_bar_left:
+                mDrawerLayout.openDrawer(mMenuLeft);
+                break;
+            case R.id.float_btn:
+                Snackbar.make(view, "想点我底下这个小姐姐吗", Snackbar.LENGTH_LONG)
+                        .setAction("Action", new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                Toast.makeText(MainActivity.this, "并不想，哼都没有王福荣小哥哥", Toast.LENGTH_SHORT).show();
+                            }
+                        }).show();
+                break;
+        }
     }
+
 
     //适配器
     class FragmentAdapter extends FragmentStatePagerAdapter {
@@ -165,4 +247,16 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * 返回键
+     */
+    @Override
+    public void onBackPressed() {
+        if (mDrawerLayout.isDrawerOpen(mDrawerLayout.findViewById(R.id.menu_left))) {
+            mDrawerLayout.closeDrawers();
+        } else {
+            super.onBackPressed();
+        }
+
+    }
 }

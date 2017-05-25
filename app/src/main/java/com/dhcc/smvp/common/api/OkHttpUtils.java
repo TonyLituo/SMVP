@@ -1,6 +1,9 @@
-package com.dhcc.smvp.common;
+package com.dhcc.smvp.common.api;
 
-import com.dhcc.smvp.model.api.Api;
+import android.text.TextUtils;
+import android.util.Log;
+
+import com.dhcc.smvp.BuildConfig;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -9,6 +12,7 @@ import java.io.InputStream;
 import java.net.FileNameMap;
 import java.net.URLConnection;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -19,19 +23,52 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
+import okhttp3.logging.HttpLoggingInterceptor;
 
 /**
  * Created by Jinx on 2017/5/3.
  */
 public class OkHttpUtils {
-
+    /**
+     * 默认超时时间
+     */
+    private static final int DEFAULT_TIMEOUT = 5;
 
     private OkHttpClient client;
-    //唯一实例
+    /**
+     * 唯一实例
+     */
     private static OkHttpUtils sInstance;
 
     private OkHttpUtils() {
-        client = new OkHttpClient();
+        OkHttpClient.Builder builder = new OkHttpClient.Builder();
+        //如果不是在正式包，添加拦截 打印响应json
+        if (BuildConfig.DEBUG) {
+            HttpLoggingInterceptor logging = new HttpLoggingInterceptor(
+                    new HttpLoggingInterceptor.Logger() {
+                        @Override
+                        public void log(String message) {
+                            if (TextUtils.isEmpty(message)) return;
+                            String s = message.substring(0, 1);
+                            //如果收到响应是json才打印
+                            if ("{".equals(s) || "[".equals(s)) {
+                                Log.e("RetrofitUtils", "收到响应: " + message);
+
+                            }
+                        }
+                    });
+
+            logging.setLevel(HttpLoggingInterceptor.Level.BODY);
+            builder.addInterceptor(logging);
+        }
+
+        client = builder
+                .addInterceptor(new RequestInterceptor())
+                .addInterceptor(new LoggingInterceptor())
+                .readTimeout(DEFAULT_TIMEOUT, TimeUnit.SECONDS)
+                .writeTimeout(DEFAULT_TIMEOUT, TimeUnit.SECONDS)
+                .connectTimeout(DEFAULT_TIMEOUT, TimeUnit.SECONDS)
+                .build();
     }
 
     public static OkHttpUtils getInstance() {
@@ -45,14 +82,19 @@ public class OkHttpUtils {
         return sInstance;
     }
 
+
+    public OkHttpClient getClient() {
+        return client;
+    }
+
     /**
      * Get请求
      *
      * @param callback
      */
-    public void doGet(Callback callback) {
+    public void doGet(String url, Callback callback) {
         Request request = new Request.Builder()
-                .url(Api.BASE_URL)
+                .url(Api.BASE_URL + url)
                 .build();
         Call call = client.newCall(request);
         call.enqueue(callback);
@@ -102,13 +144,13 @@ public class OkHttpUtils {
      * @param callback
      */
     public void doFile(String pathName, String fileName, Callback callback) {
-        //判断文件类型
-        MediaType MEDIA_TYPE = MediaType.parse(judgeType(pathName));
+        //判断文件类型mediaType
+        MediaType mediaType = MediaType.parse(judgeType(pathName));
         //创建文件参数
         MultipartBody.Builder builder = new MultipartBody.Builder()
                 .setType(MultipartBody.FORM)
-                .addFormDataPart(MEDIA_TYPE.type(), fileName,
-                        RequestBody.create(MEDIA_TYPE, new File(pathName)));
+                .addFormDataPart(mediaType.type(), fileName,
+                        RequestBody.create(mediaType, new File(pathName)));
         //发出请求参数
         Request request = new Request.Builder()
                 .header("Authorization", "Client-ID " + "9199fdef135c122")

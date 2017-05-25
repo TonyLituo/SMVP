@@ -1,4 +1,4 @@
-package com.dhcc.smvp.model.base;
+package com.dhcc.smvp.common.api;
 
 import android.os.Handler;
 import android.os.Looper;
@@ -78,12 +78,28 @@ public abstract class UICallBack implements Callback {
         });
     }
 
-    //抽象三个方法（运行在主线程）
 
+    /**
+     * 响应成功  code==200
+     *
+     * @param call
+     * @param body
+     */
     public abstract void onResponseUI(Call call, String body);
 
+    /**
+     * 响应失败 ，一般为无网络访问，url不合法等;
+     *
+     * @param call
+     * @param e
+     */
     public abstract void onFailureUI(Call call, IOException e);
 
+    /**
+     * 网络错误  code！=200;
+     *
+     * @param responseCode
+     */
     public abstract void onError(int responseCode);
 
 }

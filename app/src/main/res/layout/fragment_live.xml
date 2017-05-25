@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fastScrollEnabled="false"
+    android:orientation="vertical"
+    android:scrollbars="none"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <com.youth.banner.Banner
+            android:id="@+id/banner_live"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            app:delay_time="2500"
+            app:indicator_height="10dp"
+            app:indicator_margin="5dp"
+            app:indicator_width="10dp"
+            app:is_auto_play="true"
+            app:scroll_time="800">
+
+        </com.youth.banner.Banner>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="5dp">
+
+            <TextView
+                android:id="@+id/tv_focous"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:layout_weight="1"
+                android:drawableTop="@mipmap/ic_launcher"
+                android:gravity="center"
+                android:text="@string/foucs_live"
+                android:textColor="#000000"
+                android:textSize="13sp"/>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:layout_weight="1"
+                android:drawableTop="@mipmap/ic_launcher"
+                android:gravity="center"
+                android:text="@string/center_live"
+                android:textColor="#000000"
+                android:textSize="13sp"/>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:layout_weight="1"
+                android:drawableTop="@mipmap/ic_launcher"
+                android:gravity="center"
+                android:text="@string/vedio_live"
+                android:textColor="#000000"
+                android:textSize="13sp"/>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:layout_weight="1"
+                android:drawableTop="@mipmap/ic_launcher"
+                android:gravity="center"
+                android:text="@string/serach_live"
+                android:textColor="#000000"
+                android:textSize="13sp"/>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:layout_weight="1"
+                android:drawableTop="@mipmap/ic_launcher"
+                android:gravity="center"
+                android:text="@string/type_live"
+                android:textColor="#000000"
+                android:textSize="13sp"/>
+        </LinearLayout>
+
+        <!--         android:nestedScrollingEnabled="false"
+        这里设置为false,放弃自己的滑动,交给外部的NestedScrollView处理,
+        就没有出现卡顿的现象了,并且有fling的效果-->
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rcv_live"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:nestedScrollingEnabled="false"/>
+
+    </LinearLayout>
+</android.support.v4.widget.NestedScrollView>

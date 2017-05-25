@@ -1,8 +1,11 @@
-package com.dhcc.smvp;
+package com.dhcc.smvp.view;
 
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.ImageView;
+
+import com.dhcc.smvp.R;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,6 +16,8 @@ import butterknife.ButterKnife;
 public class HomeActivity extends AppCompatActivity {
     @BindView(R.id.tabs)
     TabLayout mTabLayout;
+    @BindView(R.id.img_position)
+    ImageView mImageView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,5 +39,7 @@ public class HomeActivity extends AppCompatActivity {
         for (int i = 0; i < titles.size(); i++) {
             mTabLayout.addTab(mTabLayout.newTab().setText(titles.get(i)));
         }
+
+
     }
 }
