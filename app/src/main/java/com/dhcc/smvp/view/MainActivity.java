@@ -1,8 +1,6 @@
 package com.dhcc.smvp.view;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
@@ -26,6 +24,7 @@ import com.dhcc.smvp.model.TestModel;
 import com.dhcc.smvp.model.bean.Info;
 import com.dhcc.smvp.view.adapter.LeftAdapter;
 import com.dhcc.smvp.view.adapter.MenubBean;
+import com.dhcc.smvp.view.intent.Lancher;
 import com.dhcc.smvp.view.test.LiveFragment;
 
 import java.util.ArrayList;
@@ -69,7 +68,6 @@ public class MainActivity extends AppCompatActivity {
     private FragmentAdapter fmAapter;
 
 
-    private Handler mHandler = new Handler();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,25 +81,25 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onSubscribe(Disposable d) {
                 String thread = Thread.currentThread().getName();
-                Log.e("onSubscribe", thread + "========" );
+                Log.e("onSubscribe", thread + "========");
             }
 
             @Override
             public void onNext(Info info) {
                 String thread = Thread.currentThread().getName();
-                Log.e("onNext", thread + "========" );
+                Log.e("onNext", thread + "========");
             }
 
             @Override
             public void onError(Throwable e) {
                 String thread = Thread.currentThread().getName();
-                Log.e("onError", thread + "========"+e.getMessage()+"=="+e.getLocalizedMessage() );
+                Log.e("onError", thread + "========" + e.getMessage() + "==" + e.getLocalizedMessage());
             }
 
             @Override
             public void onComplete() {
                 String thread = Thread.currentThread().getName();
-                Log.e("onComplete", thread + "========" );
+                Log.e("onComplete", thread + "========");
             }
         });
     }
@@ -174,12 +172,13 @@ public class MainActivity extends AppCompatActivity {
         mDrawerLayout.closeDrawers();
         switch (position) {
             case 0:
-                toActivity(MainActivity.class);
+                Lancher.newIntance(this, MainActivity.class).start();
                 break;
             case 1:
+                Lancher.newIntance(this, LoginActivity.class).start();
                 break;
             case 11:
-                toActivity(HomeActivity.class);
+                Lancher.newIntance(this, HomeActivity.class).start();
                 break;
             default:
                 break;
@@ -187,21 +186,6 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    /**
-     * 导航跳转
-     *
-     * @param cla
-     */
-    private void toActivity(Class<?> cla) {
-        final Intent intent = new Intent(this, cla);
-        mHandler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                startActivity(intent);
-            }
-        }, 300);
-
-    }
 
     @OnClick({R.id.img_bar_left, R.id.float_btn})
     public void Clicked(View view) {

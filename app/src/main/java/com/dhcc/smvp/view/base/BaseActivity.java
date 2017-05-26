@@ -15,15 +15,20 @@ import com.dhcc.smvp.R;
 import com.dhcc.smvp.presenter.base.IBasePresenter;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 import butterknife.OnClick;
+import butterknife.Unbinder;
 
 /**
  * Created by Jinx on 2017/5/3.
  */
 
 public abstract class BaseActivity<V extends IBaseView, P extends IBasePresenter<V>> extends AppCompatActivity implements IBaseView {
-    @BindView(R.id.base_contentview)
+
     FrameLayout contentView;
+
+    @BindView(R.id.toolbar)
+    FrameLayout mToolbar;
     @BindView(R.id.toolbar_title)
     TextView mToolbarTitle;
     @BindView(R.id.error_view)
@@ -34,27 +39,47 @@ public abstract class BaseActivity<V extends IBaseView, P extends IBasePresenter
 
     protected P presenter;
 
+    protected Unbinder mUnbinder;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         tag = this.getClass().getSimpleName();
 
         setTranslucentStatus();
+
         setContentView(R.layout.activity_base);
+//这里不能用butterknife绑定  还未初始化；也不能先初始化Butterknife，不然找不到contentView中的控件
+
+        contentView = (FrameLayout) this.findViewById(R.id.base_contentview);
+
         contentView.addView(View.inflate(this, getLayoutResID(), null));
-        mToolbarTitle.setText(setTitle());
+
+        mUnbinder = ButterKnife.bind(this);
+
+        mToolbarTitle.setText(setToolbarTitle());
+
+        addToolbar();
+
         initView();
 
         presenter = createPresenter();
+
         presenter.attach((V) this);
 
         showContentView();
+
+        //透明状态栏内容延伸到状态栏，
+        // 去掉默认的toolbar，xml中：android:fitsSystemWindows="false"
+        //子类中调用 removeToolbar();
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
         presenter.dettach();
+        mUnbinder.unbind();
+        mUnbinder = null;
     }
 
     public void showErrorView() {
@@ -65,6 +90,14 @@ public abstract class BaseActivity<V extends IBaseView, P extends IBasePresenter
     public void showContentView() {
         mErrorView.setVisibility(View.GONE);
         contentView.setVisibility(View.VISIBLE);
+    }
+
+    public void removeToolbar() {
+        mToolbar.setVisibility(View.GONE);
+    }
+
+    public void addToolbar() {
+        mToolbar.setVisibility(View.VISIBLE);
     }
 
     /**
@@ -93,17 +126,16 @@ public abstract class BaseActivity<V extends IBaseView, P extends IBasePresenter
      *
      * @return
      */
-    protected abstract String setTitle();
+    @NonNull
+    protected abstract String setToolbarTitle();
 
     @OnClick({R.id.toolbar_img_left})
-    public void onViewClicked(View view) {
+    public void onBaseClicked(View view) {
         switch (view.getId()) {
             case R.id.toolbar_img_left:
                 finish();
                 break;
-
             default:
-
                 break;
         }
     }

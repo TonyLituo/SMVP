@@ -13,8 +13,8 @@ import android.widget.TextView;
 
 import com.dhcc.smvp.R;
 import com.dhcc.smvp.common.PicassoImageLoader;
-import com.dhcc.smvp.common.widgetutil.GridSpacingItemDecoration;
-import com.dhcc.smvp.common.widgetutil.OnItemClickListener;
+import com.dhcc.smvp.view.widget.listener.GridSpacingItemDecoration;
+import com.dhcc.smvp.view.widget.listener.OnItemClickListener;
 import com.dhcc.smvp.view.BeautyActivity;
 import com.dhcc.smvp.view.adapter.BeautyAdapter;
 import com.youth.banner.Banner;

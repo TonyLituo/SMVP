@@ -1,4 +1,4 @@
-package com.dhcc.smvp.common.widgetutil;
+package com.dhcc.smvp.view.widget.listener;
 
 import android.graphics.Rect;
 import android.support.v7.widget.RecyclerView;

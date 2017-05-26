@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.dhcc.smvp.R;
-import com.dhcc.smvp.common.widgetutil.OnItemClickListener;
+import com.dhcc.smvp.view.widget.listener.OnItemClickListener;
 
 import java.util.List;
 

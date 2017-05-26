@@ -1,4 +1,4 @@
-package com.dhcc.smvp.common.widgetutil;
+package com.dhcc.smvp.view.widget.listener;
 
 import android.view.View;
 

@@ -5,7 +5,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/base_toobar"
     android:layout_width="match_parent"
-    android:layout_height="?attr/actionBarSize"
+    android:layout_height="75dp"
     android:background="?attr/colorPrimary"
     android:fitsSystemWindows="true"
     android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
@@ -36,7 +36,7 @@
             android:id="@+id/toolbar_img_right"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
             android:layout_margin="7dp"
             android:adjustViewBounds="false"
             android:cropToPadding="false"

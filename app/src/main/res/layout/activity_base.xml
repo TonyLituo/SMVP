@@ -6,13 +6,22 @@
                 android:layout_height="match_parent"
                 tools:context=".view.base.BaseActivity">
 
-    <include layout="@layout/base_toolbar"/>
+    <FrameLayout
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone">
+
+        <include layout="@layout/base_toolbar"/>
+
+    </FrameLayout>
+
 
     <FrameLayout
         android:id="@+id/error_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/base_toobar"
+        android:layout_below="@+id/toolbar"
         >
 
         <include layout="@layout/content_error"/>
@@ -23,7 +32,7 @@
         android:id="@+id/base_contentview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/base_toobar"
+        android:layout_below="@+id/toolbar"
         >
     </FrameLayout>
 </RelativeLayout>
