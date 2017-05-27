@@ -52,7 +52,7 @@ public class OkHttpUtils {
                             String s = message.substring(0, 1);
                             //如果收到响应是json才打印
                             if ("{".equals(s) || "[".equals(s)) {
-                                Log.e("RetrofitUtils", "收到响应: " + message);
+                                Log.e("OkHttpUtils", "收到响应: " + message);
 
                             }
                         }

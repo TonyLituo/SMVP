@@ -14,13 +14,14 @@ public abstract class BaseFragment<V extends IBaseView, P extends IBasePresenter
 
     P presenter;
 
+
     public BaseFragment() {
         // Required empty public constructor
     }
 
+
     @NonNull
     protected abstract P createPresenter();
-
 
 
 }

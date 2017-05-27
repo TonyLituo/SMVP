@@ -26,7 +26,6 @@ import butterknife.Unbinder;
 public abstract class BaseActivity<V extends IBaseView, P extends IBasePresenter<V>> extends AppCompatActivity implements IBaseView {
 
     FrameLayout contentView;
-
     @BindView(R.id.toolbar)
     FrameLayout mToolbar;
     @BindView(R.id.toolbar_title)

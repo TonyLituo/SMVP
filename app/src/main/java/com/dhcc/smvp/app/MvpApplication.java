@@ -12,11 +12,8 @@ public class MvpApplication extends Application {
     public void onCreate() {
         super.onCreate();
 //        registerActivityLifecycleCallbacks(new ActivityCallback());
-//        setTheme(R.style.RedTheme);
+
     }
 
-    @Override
-    public void setTheme(int resid) {
-        super.setTheme(resid);
-    }
+
 }

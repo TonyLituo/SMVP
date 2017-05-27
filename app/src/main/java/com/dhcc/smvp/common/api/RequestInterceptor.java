@@ -1,6 +1,10 @@
 package com.dhcc.smvp.common.api;
 
 
+import android.util.Log;
+
+import com.dhcc.smvp.BuildConfig;
+
 import java.io.IOException;
 
 import okhttp3.Interceptor;
@@ -20,11 +24,17 @@ public class RequestInterceptor implements Interceptor {
         Request request = chain.request()
                 .newBuilder()
                 .addHeader("DAIWAN-API-TOKEN", Api.TOKEN)
+//                .addHeader("Content-Type", "application/json; charset=utf-8")
                 .build();
 
 //        Log.e("Jinx", "request:" + request.toString());
 //
 //        Log.e("Jinx", "request headers:" + request.headers().toString());
+
+        if (BuildConfig.DEBUG) {
+            Log.e("LoggingInterceptor", String.format("发送请求: %s on %s%n%s",
+                    request.url(), chain.connection(), request.headers()));
+        }
         return chain.proceed(request);
     }
 }
