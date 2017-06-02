@@ -19,6 +19,7 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.dhcc.library.util.RxToast;
 import com.dhcc.smvp.R;
 import com.dhcc.smvp.model.TestModel;
 import com.dhcc.smvp.model.bean.Info;
@@ -26,6 +27,7 @@ import com.dhcc.smvp.view.adapter.LeftAdapter;
 import com.dhcc.smvp.view.adapter.MenubBean;
 import com.dhcc.smvp.view.intent.Lancher;
 import com.dhcc.smvp.view.test.LiveFragment;
+import com.dhcc.smvp.view.test.SurfaceActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -68,14 +70,12 @@ public class MainActivity extends AppCompatActivity {
     private FragmentAdapter fmAapter;
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
         init();
-
         TestModel testModel = new TestModel();
         testModel.getArea(new Observer<Info>() {
             @Override
@@ -168,14 +168,29 @@ public class MainActivity extends AppCompatActivity {
 
     @OnItemClick({R.id.lst_menu})
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        Toast.makeText(this, "Position==" + position, Toast.LENGTH_SHORT).show();
+//        Toast.makeText(this, "Position==" + position, Toast.LENGTH_SHORT).show();
         mDrawerLayout.closeDrawers();
+
         switch (position) {
             case 0:
                 Lancher.newIntance(this, MainActivity.class).start();
+                RxToast.success("一个非常长的Toast：位置" + position);
                 break;
             case 1:
                 Lancher.newIntance(this, LoginActivity.class).start();
+                RxToast.info("一个非常长的Toast，就问你怕不怕：位置" + position);
+                break;
+            case 2:
+                Lancher.newIntance(this, SurfaceActivity.class).start();
+                RxToast.error("一个非常长的Toast，就问你怕不怕：啥 你不怕？？？？位置" + position);
+                break;
+            case 3:
+                Lancher.newIntance(this, SurfaceActivity.class).start();
+                RxToast.normal("位置" + position);
+                break;
+            case 4:
+                Lancher.newIntance(this, SurfaceActivity.class).start();
+                RxToast.success("位置" + position);
                 break;
             case 11:
                 Lancher.newIntance(this, HomeActivity.class).start();

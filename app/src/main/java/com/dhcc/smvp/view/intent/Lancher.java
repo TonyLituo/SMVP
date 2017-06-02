@@ -51,14 +51,28 @@ public class Lancher {
         return lancher;
     }
 
-
+    /**
+     * 请求码
+     *
+     * @param code
+     * @return
+     */
     public Lancher code(int code) {
         this.code = code;
         return this;
     }
 
     /**
-     * 需要先调用from(),to()
+     * 结束当前页面
+     *
+     * @return
+     */
+    public Lancher finish() {
+        activity.finish();
+        return this;
+    }
+
+    /**
      * <p>
      * 执行跳转
      */

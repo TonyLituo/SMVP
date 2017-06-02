@@ -39,7 +39,5 @@ public class HomeActivity extends AppCompatActivity {
         for (int i = 0; i < titles.size(); i++) {
             mTabLayout.addTab(mTabLayout.newTab().setText(titles.get(i)));
         }
-
-
     }
 }

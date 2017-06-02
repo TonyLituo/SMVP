@@ -29,6 +29,10 @@
         </activity>
         <activity android:name=".view.HomeActivity">
         </activity>
+        <activity android:name=".view.test.SurfaceActivity">
+        </activity>
+        <activity android:name=".view.test.QcodeActivity">
+        </activity>
     </application>
 
 </manifest>
