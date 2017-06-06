@@ -32,7 +32,9 @@ public class RetrofitUtils {
         mRetrofit = new Retrofit.Builder()
                 .baseUrl(Api.BASE_URL)
                 .client(OkHttpUtils.getInstance().getClient())
+                //自定义Gson转化器
                 .addConverterFactory(GsonConverterFactory.create())
+//                .addConverterFactory(ResponseConverterFactory.create())
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .build();
 

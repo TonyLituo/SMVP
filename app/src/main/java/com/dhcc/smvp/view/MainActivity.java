@@ -21,6 +21,7 @@ import android.widget.Toast;
 
 import com.dhcc.library.util.RxToast;
 import com.dhcc.smvp.R;
+import com.dhcc.smvp.common.api.MyObserver;
 import com.dhcc.smvp.common.api.ResponListBean;
 import com.dhcc.smvp.eventbus.MessageEvent;
 import com.dhcc.smvp.model.TestModel;
@@ -46,7 +47,6 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.OnItemClick;
-import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;
 
 public class MainActivity extends AppCompatActivity {
@@ -194,30 +194,30 @@ public class MainActivity extends AppCompatActivity {
 
             case 10:
                 TestModel testModel = new TestModel();
-                testModel.getArea(new Observer<Info>() {
+                testModel.getArea(new MyObserver<Info>() {
                     @Override
                     public void onSubscribe(Disposable d) {
                         String thread = Thread.currentThread().getName();
-                        Log.e("onSubscribe", thread + "========");
+                        Logger.e(thread + "========");
                     }
 
                     @Override
                     public void onNext(Info info) {
                         String thread = Thread.currentThread().getName();
+                        Logger.e(thread + "========");
                         Logger.d(info);
-                        Log.e("onNext", thread + "========");
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-                        String thread = Thread.currentThread().getName();
-                        Log.e("onError", thread + "========" + e.getMessage() + "==" + e.getLocalizedMessage());
                     }
 
                     @Override
                     public void onComplete() {
                         String thread = Thread.currentThread().getName();
-                        Log.e("onComplete", thread + "========");
+                        Logger.e(thread + "========");
+                    }
+
+                    @Override
+                    public void error(int code) {
+                        String thread = Thread.currentThread().getName();
+                        Logger.e(thread+"======" + code);
                     }
                 });
                 break;
@@ -229,6 +229,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
     }
+
 
 
     @OnClick({R.id.img_bar_left, R.id.float_btn})
