@@ -65,5 +65,8 @@ dependencies {
     compile 'pub.devrel:easypermissions:0.4.0'
     //https://github.com/orhanobut/logger  日志
     compile 'com.orhanobut:logger:2.1.0'
+    //EventBus3.0
+    compile 'org.greenrobot:eventbus:3.0.0'
+
     compile project(':library')
 }

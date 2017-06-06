@@ -21,13 +21,23 @@ import android.widget.Toast;
 
 import com.dhcc.library.util.RxToast;
 import com.dhcc.smvp.R;
+import com.dhcc.smvp.common.api.ResponListBean;
+import com.dhcc.smvp.eventbus.MessageEvent;
 import com.dhcc.smvp.model.TestModel;
 import com.dhcc.smvp.model.bean.Info;
+import com.dhcc.smvp.model.bean.TestBean;
 import com.dhcc.smvp.view.adapter.LeftAdapter;
 import com.dhcc.smvp.view.adapter.MenubBean;
 import com.dhcc.smvp.view.intent.Lancher;
 import com.dhcc.smvp.view.test.LiveFragment;
+import com.dhcc.smvp.view.test.SmsReceiverActivity;
 import com.dhcc.smvp.view.test.SurfaceActivity;
+import com.google.gson.Gson;
+import com.orhanobut.logger.Logger;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -76,32 +86,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
         init();
-        TestModel testModel = new TestModel();
-        testModel.getArea(new Observer<Info>() {
-            @Override
-            public void onSubscribe(Disposable d) {
-                String thread = Thread.currentThread().getName();
-                Log.e("onSubscribe", thread + "========");
-            }
-
-            @Override
-            public void onNext(Info info) {
-                String thread = Thread.currentThread().getName();
-                Log.e("onNext", thread + "========");
-            }
-
-            @Override
-            public void onError(Throwable e) {
-                String thread = Thread.currentThread().getName();
-                Log.e("onError", thread + "========" + e.getMessage() + "==" + e.getLocalizedMessage());
-            }
-
-            @Override
-            public void onComplete() {
-                String thread = Thread.currentThread().getName();
-                Log.e("onComplete", thread + "========");
-            }
-        });
+        EventBus.getDefault().register(this);
     }
 
     private void init() {
@@ -175,6 +160,21 @@ public class MainActivity extends AppCompatActivity {
             case 0:
                 Lancher.newIntance(this, MainActivity.class).start();
                 RxToast.success("一个非常长的Toast：位置" + position);
+
+                List<TestBean> beanList = new ArrayList<>();
+                beanList.add(new TestBean(0, "AAA"));
+                beanList.add(new TestBean(1, "BBB"));
+                beanList.add(new TestBean(2, "CCC"));
+                beanList.add(new TestBean(3, "DDD"));
+
+                ResponListBean<TestBean> bean = new ResponListBean<>();
+                bean.setRtnCode(0);
+                bean.setRtnMsg("成功");
+                bean.setResParams(beanList);
+                String jsonObject = new Gson().toJson(bean);
+                Log.e("EEEEE", jsonObject);
+                Log.d("DDDDD", jsonObject);
+                Logger.json(jsonObject);
                 break;
             case 1:
                 Lancher.newIntance(this, LoginActivity.class).start();
@@ -189,8 +189,37 @@ public class MainActivity extends AppCompatActivity {
                 RxToast.normal("位置" + position);
                 break;
             case 4:
-                Lancher.newIntance(this, SurfaceActivity.class).start();
-                RxToast.success("位置" + position);
+                Lancher.newIntance(this, SmsReceiverActivity.class).start();
+                break;
+
+            case 10:
+                TestModel testModel = new TestModel();
+                testModel.getArea(new Observer<Info>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+                        String thread = Thread.currentThread().getName();
+                        Log.e("onSubscribe", thread + "========");
+                    }
+
+                    @Override
+                    public void onNext(Info info) {
+                        String thread = Thread.currentThread().getName();
+                        Logger.d(info);
+                        Log.e("onNext", thread + "========");
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        String thread = Thread.currentThread().getName();
+                        Log.e("onError", thread + "========" + e.getMessage() + "==" + e.getLocalizedMessage());
+                    }
+
+                    @Override
+                    public void onComplete() {
+                        String thread = Thread.currentThread().getName();
+                        Log.e("onComplete", thread + "========");
+                    }
+                });
                 break;
             case 11:
                 Lancher.newIntance(this, HomeActivity.class).start();
@@ -220,6 +249,31 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onMoonEvent(MessageEvent messageEvent) {
+        Logger.e(messageEvent.getMsg());
+        RxToast.success(messageEvent.getMsg());
+    }
+
+
+    /**
+     * 返回键
+     */
+    @Override
+    public void onBackPressed() {
+        if (mDrawerLayout.isDrawerOpen(mDrawerLayout.findViewById(R.id.menu_left))) {
+            mDrawerLayout.closeDrawers();
+        } else {
+            super.onBackPressed();
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
+    }
+
 
     //适配器
     class FragmentAdapter extends FragmentStatePagerAdapter {
@@ -246,16 +300,5 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    /**
-     * 返回键
-     */
-    @Override
-    public void onBackPressed() {
-        if (mDrawerLayout.isDrawerOpen(mDrawerLayout.findViewById(R.id.menu_left))) {
-            mDrawerLayout.closeDrawers();
-        } else {
-            super.onBackPressed();
-        }
 
-    }
 }

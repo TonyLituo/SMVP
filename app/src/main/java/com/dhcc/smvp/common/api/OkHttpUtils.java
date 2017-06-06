@@ -1,9 +1,9 @@
 package com.dhcc.smvp.common.api;
 
 import android.text.TextUtils;
-import android.util.Log;
 
 import com.dhcc.smvp.BuildConfig;
+import com.orhanobut.logger.Logger;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -52,8 +52,8 @@ public class OkHttpUtils {
                             String s = message.substring(0, 1);
                             //如果收到响应是json才打印
                             if ("{".equals(s) || "[".equals(s)) {
-                                Log.e("OkHttpUtils", "收到响应: " + message);
-
+                                Logger.d("收到响应: "+message);
+                                Logger.json(message);
                             }
                         }
                     });
@@ -64,7 +64,6 @@ public class OkHttpUtils {
 
         client = builder
                 .addInterceptor(new RequestInterceptor())
-                .addInterceptor(new LoggingInterceptor())
                 .readTimeout(DEFAULT_TIMEOUT, TimeUnit.SECONDS)
                 .writeTimeout(DEFAULT_TIMEOUT, TimeUnit.SECONDS)
                 .connectTimeout(DEFAULT_TIMEOUT, TimeUnit.SECONDS)

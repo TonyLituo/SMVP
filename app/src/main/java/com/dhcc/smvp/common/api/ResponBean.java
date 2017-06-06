@@ -30,7 +30,7 @@ public class ResponBean<T> {
     @SerializedName("resParams")
     private T resParams;
 
-    private String rtnCode;
+    private int rtnCode;
 
     private String rtnMsg;
 
@@ -42,11 +42,11 @@ public class ResponBean<T> {
         this.resParams = resParams;
     }
 
-    public String getRtnCode() {
+    public int getRtnCode() {
         return rtnCode;
     }
 
-    public void setRtnCode(String rtnCode) {
+    public void setRtnCode(int rtnCode) {
         this.rtnCode = rtnCode;
     }
 
@@ -62,7 +62,7 @@ public class ResponBean<T> {
     public String toString() {
         return "ResponBean{" +
                 "resParams=" + resParams +
-                ", rtnCode='" + rtnCode + '\'' +
+                ", rtnCode=" + rtnCode +
                 ", rtnMsg='" + rtnMsg + '\'' +
                 '}';
     }

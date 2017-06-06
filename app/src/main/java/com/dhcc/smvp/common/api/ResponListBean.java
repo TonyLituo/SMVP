@@ -30,7 +30,7 @@ public class ResponListBean<T> {
 
     private List<T> resParams;
 
-    private String rtnCode;
+    private int rtnCode;
 
     private String rtnMsg;
 
@@ -42,11 +42,11 @@ public class ResponListBean<T> {
         this.resParams = resParams;
     }
 
-    public String getRtnCode() {
+    public int getRtnCode() {
         return rtnCode;
     }
 
-    public void setRtnCode(String rtnCode) {
+    public void setRtnCode(int rtnCode) {
         this.rtnCode = rtnCode;
     }
 
@@ -62,7 +62,7 @@ public class ResponListBean<T> {
     public String toString() {
         return "ResponListBean{" +
                 "resParams=" + resParams +
-                ", rtnCode='" + rtnCode + '\'' +
+                ", rtnCode=" + rtnCode +
                 ", rtnMsg='" + rtnMsg + '\'' +
                 '}';
     }

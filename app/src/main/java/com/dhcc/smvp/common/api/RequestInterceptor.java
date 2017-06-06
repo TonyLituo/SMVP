@@ -14,6 +14,7 @@ import okhttp3.Response;
 /**
  * Created by Jinx on 2017/5/24.
  * <p>
+ *     日志拦截器
  * 过滤器  添加请求头信息
  */
 
@@ -27,12 +28,9 @@ public class RequestInterceptor implements Interceptor {
 //                .addHeader("Content-Type", "application/json; charset=utf-8")
                 .build();
 
-//        Log.e("Jinx", "request:" + request.toString());
-//
-//        Log.e("Jinx", "request headers:" + request.headers().toString());
-
         if (BuildConfig.DEBUG) {
-            Log.e("LoggingInterceptor", String.format("发送请求: %s on %s%n%s",
+
+            Log.e("Interceptor", String.format("发送请求: %s on %s%n%s",
                     request.url(), chain.connection(), request.headers()));
         }
         return chain.proceed(request);

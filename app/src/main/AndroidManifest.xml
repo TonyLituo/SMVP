@@ -23,8 +23,6 @@
         </activity>
         <activity android:name=".view.LoginActivity">
         </activity>
-        <activity android:name=".view.test.FirstActivity">
-        </activity>
         <activity android:name=".view.BeautyActivity">
         </activity>
         <activity android:name=".view.HomeActivity">
@@ -32,6 +30,8 @@
         <activity android:name=".view.test.SurfaceActivity">
         </activity>
         <activity android:name=".view.test.QcodeActivity">
+        </activity>
+        <activity android:name=".view.test.SmsReceiverActivity">
         </activity>
     </application>
 

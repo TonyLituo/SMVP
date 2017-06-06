@@ -15,7 +15,7 @@ public interface Api {
     /**
      * 动态临时Token 每天更新
      */
-    String TOKEN = "B28A1-21140-515CA-A1C81";
+    String TOKEN = "8C067-4333C-834F6-70C00";
 
     /**
      * 基础路径

@@ -16,30 +16,19 @@ public interface ApiService {
 
     /**
      * retrofit
-     *
+     * <p>
      * 不支持二次泛型   下面两种写法都不对
-     *
-     *java.lang.IllegalArgumentException:
+     * <p>
+     * java.lang.IllegalArgumentException:
      * Method return type must not include a type variable or wildcard:
      * io.reactivex.Observable<com.dhcc.traffic.api.ResponBean<T>>
      */
-//    /**
-//     * Post requestBody请求数据
-//     *
-//     * @param body
-//     * @return
-//     */
-//    @POST(Api.POST_URL)
-//    Observable<ResponBean<T>> post(@Body RequestBody body);
-//
-//    /**
-//     * Post requestBody请求数据   返回参数为JSONArray
-//     *
-//     * @param body
-//     * @return
-//     */
-//    @POST(Api.POST_URL)
-//    Call<ResponBean<T>> postList(@Body RequestBody body);
+   /* @POST(Api.POST_URL)
+    Observable<ResponBean<T>> post(@Body RequestBody body);
+
+
+    @POST(Api.POST_URL)
+    Call<ResponBean<T>> postList(@Body RequestBody body);*/
 
     /**
      * Get请求
